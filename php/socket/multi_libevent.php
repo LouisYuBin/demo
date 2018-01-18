@@ -4,7 +4,7 @@
  * 同时处理多个连接
  * 惊群效应没处理
  */
-class Xtgxiso_server
+class MultiProcessLibevent
 {
     public $socket = false;
     public $master = array();
@@ -149,7 +149,7 @@ class Xtgxiso_server
     }
 
 }
-$server =  new Xtgxiso_server();
+$server =  new MultiProcessLibevent();
 
 $server->onConnect = function($conn){
     echo "onConnect -- accepted " . stream_socket_get_name($conn,true) . "\n";

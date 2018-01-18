@@ -3,7 +3,7 @@
  * 单进程IO复用select
  * 同时处理多个连接
  */
-class Xtgxiso_server
+class SingleSelectServer
 {
     public $socket = false;
     public $master = array();
@@ -93,7 +93,7 @@ class Xtgxiso_server
         }
     }
 }
-$server =  new Xtgxiso_server();
+$server =  new SingleSelectServer();
 
 $server->onConnect = function($conn){
     echo "onConnect -- accepted " . stream_socket_get_name($conn,true) . "\n";

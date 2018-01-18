@@ -2,7 +2,7 @@
 /**
  * 单进程阻塞式--同时只能处理一个连接
  */
-class Xtgxiso_server
+class SingleProcessServer
 {
     public $socket = false;
     public $onConnect = null;
@@ -66,7 +66,7 @@ class Xtgxiso_server
         fclose($this -> socket);
     }
 }
-$server =  new Xtgxiso_server();
+$server =  new SingleProcessServer();
 
 $server -> onConnect = function($conn){
     echo "onConnect -- accepted " . stream_socket_get_name($conn,true) . "\n";

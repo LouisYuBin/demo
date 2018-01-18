@@ -4,16 +4,16 @@
  * 其中一个进程挂掉自动启动新的
  * 同时处理的连接数受限于启动的进程数
  */
-class Xtgxiso_server
+class MultiProcessServer
 {
     public $socket = false;
     public $onConnect = null;
     public $onMessage = null;
     public $onClose = null;
-    public $process_num = 2;
+    public $process_num = 10;
     private $pids = array();
 
-    function __construct($host="0.0.0.0",$port=1215){
+    function __construct($host="0.0.0.0",$port=1222){
         //产生子进程分支
         $pid = pcntl_fork();
         if ($pid == -1) {
@@ -112,7 +112,7 @@ class Xtgxiso_server
     }
 
 }
-$server =  new Xtgxiso_server();
+$server =  new MultiProcessServer();
 
 $server->onConnect = function($conn){
     echo "onConnect -- accepted " . stream_socket_get_name($conn,true) . "\n";
